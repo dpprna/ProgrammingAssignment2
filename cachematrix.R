@@ -2,13 +2,13 @@
 
 ## The function below creates a special matrix object that stores (cache) its inverse.
 ## It also allow to set and get the matrix and its inverse matrix. Note: it uses special assignment operator (<<-) to store the inverse.
-makeCacheMatrix <- function(x = matrix()) {
+makeCacheMatrix <- function(inputMatrix = matrix()) {
         storedInverse <- NULL
-        setMatrix <- function(y) {
-                x <<- y
+        setMatrix <- function(input) {
+                inputMatrix <<- input
                 storedInverse <<- NULL
         }
-        getMatrix <- function() x
+        getMatrix <- function() inputMatrix
         setinverse <- function(inverse) storedInverse <<- inverse
         getinverse <- function() storedInverse
         list(setMatrix = setMatrix, getMatrix = getMatrix, setinverse = setinverse, getinverse = getinverse)
@@ -18,14 +18,14 @@ makeCacheMatrix <- function(x = matrix()) {
 ## The function below computes the inverse of the matrix returned by makeCacheMatrix.
 ## If the inverse is already calculated and the matrix is not changed, this function returns or prints the inverse from the stored (cached)
 ## inverse 
-cacheSolve <- function(x, ...) {
-        i <- x$getinverse()
-        if (!is.null(i)) {
+cacheSolve <- function(inputMatrix, ...) {
+        storedInverse <- inputMatrix$getinverse()
+        if (!is.null(storedInverse)) {
                 message("getting cached data")
-                return(i)
+                return(storedInverse)
         }
-        data <- x$getMatrix()
-        i <- solve(data, ...)
-        x$setinverse(i)
-        i
+        data <- inputMatrix$getMatrix()
+        calculatedInverse <- solve(data, ...)
+        inputMatrix$setinverse(calculatedInverse)
+        calculatedInverse
 }
