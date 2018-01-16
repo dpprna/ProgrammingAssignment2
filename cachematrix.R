@@ -1,4 +1,5 @@
-## The functions below cache the invese of a matrix
+## The functions below cache the inverse of a matrix; if already calculated and the matrix is unchaged prints the precalcualted, stored 
+## inverse.
 
 ## The function below creates a special matrix object that stores (cache) its inverse.
 ## It also allow to set and get the matrix and its inverse matrix. Note: it uses special assignment operator (<<-) to store the inverse.
