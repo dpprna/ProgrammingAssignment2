@@ -25,7 +25,7 @@ cacheSolve <- function(inputMatrix, ...) {
                 return(storedInverse)
         }
         data <- inputMatrix$getMatrix()
-        calculatedInverse <- solve(data, ...)
+        calculatedInverse <- solve(data) #a base package function; produces inverse of a matrix
         inputMatrix$setinverse(calculatedInverse)
         calculatedInverse
 }
